@@ -120,19 +120,24 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : [];
                             formData.append("imagefile", file);
                             var xhr = new XMLHttpRequest();
                             xhr.open("POST", "<?php echo FLASK_API_URL;?>");
-                            xhr.onload = function() {
-                                if (xhr.status >= 200 && xhr.status < 300) {
-                                    let res = JSON.stringify(JSON.parse(xhr.responseText).data);
-                                    let text = JSON.stringify(JSON.parse(xhr.responseText).img);
-                                    const idString = JSON.parse(res).join();
-                                    const url = `/web/views/index.php?act=sanpham&id=${idString}&img=${text}`;
-                                    window.location.href = url;
-
-                                } else {
-                                    console.error('Error: ' + xhr.statusText);
+                            $.ajax({
+                                type: "POST",
+                                enctype: 'multipart/form-data',
+                                url: 'http://127.0.0.1:5000/search_by_image',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                timeout: 800000,
+                                success: function(response) {
+                                    var data = response['data'];
+                                    window.location.href = `index.php?act=sanpham&id=${data}&img=${'1.jpg'}`;
+                                },
+                                error: function(response) {
+                                    // console.log(response)
+                                    alert('false')
                                 }
-                            };
-                            xhr.send(formData);
+                                });
                         };
                     </script>
 

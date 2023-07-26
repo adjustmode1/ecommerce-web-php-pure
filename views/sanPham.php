@@ -178,10 +178,11 @@
             if (isset($_GET['img'])) {
                 echo '
                         <h1>Sản phẩm cần tìm kiếm</h1>
-                        <div class="img" style="text-align: center; margin-bottom: 10px">
-                            <a href="#"><img src='.$_GET['img'].'  width="200"  height="200" alt=""></a>
-                        </div>
+
                     ';
+                //     <div class="img" style="text-align: center; margin-bottom: 10px">
+                //     <a href="#"><img src='.$_GET['img'].'  width="200"  height="200" alt=""></a>
+                // </div>
             } else {
                 echo '<h1>Sản phẩm</h1>';
             }

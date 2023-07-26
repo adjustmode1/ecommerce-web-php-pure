@@ -25,6 +25,11 @@ function loadall_sanpham_home(){
    $listsanpham= pdo_query($sql);
    return $listsanpham;
 }
+function load_to_migrate(){
+    $sql = "select id,img from sanpham where 1";
+   $listsanpham= pdo_query($sql);
+   return $listsanpham;
+}
 
 function loadall_sanpham_with_keep($keep) {
     $sql = "select * from sanpham where img in ('". implode("','", $keep). "') order by id desc";
